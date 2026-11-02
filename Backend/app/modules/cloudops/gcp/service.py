@@ -1,0 +1,2 @@
+class GcpService:
+    pass

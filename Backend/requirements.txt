@@ -1,0 +1,16 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.12.5
+python-multipart==0.0.6
+requests==2.32.5
+pandas==3.0.0
+openpyxl==3.1.5
+boto3==1.42.83
+azure-identity==1.25.3
+azure-mgmt-storage==25.1.0
+azure-mgmt-resource==26.0.0
+azure-storage-blob==12.30.0
+pymongo==4.6.0
+python-dotenv==1.0.0
+anthropic==1.5.0
+pycryptodome==4.1.0

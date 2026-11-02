@@ -1,0 +1,2 @@
+class OciService:
+    pass

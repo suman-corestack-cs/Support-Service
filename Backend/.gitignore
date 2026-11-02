@@ -1,0 +1,4 @@
+.env
+__pycache__/
+*.pyc
+.add_script_backups/
