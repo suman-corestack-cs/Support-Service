@@ -10,7 +10,6 @@ export const ENVIRONMENTS = [
   { value: "in", label: "IN" },
   { value: "mea", label: "MEA" },
   { value: "us3", label: "US3" },
-  { value: "useast", label: "USEAST" },
 ];
 
 // Looks up the active master accounts for a given environment from
@@ -47,7 +46,6 @@ async function loadTenantNames(masterAccountId, values) {
     filter: { project_master_id: { $oid: masterAccountId }, status: "active" },
     projection: { name: 1 },
     sort: [["name", 1]],
-    limit: 1000,
   });
   return (result.documents || [])
     .filter((doc) => doc.name && doc._id)
@@ -72,7 +70,6 @@ async function loadCloudAccounts(tenantId, values) {
     },
     projection: { name: 1, credentials: 1, native_details: 1 },
     sort: [["name", 1]],
-    limit: 1000,
   });
   return (result.documents || [])
     .filter((doc) => doc.name && doc._id && doc.credentials?.assume_role_arn)
@@ -105,7 +102,6 @@ async function loadAzureCloudAccounts(tenantId, values) {
     },
     projection: { name: 1, credentials: 1, native_details: 1 },
     sort: [["name", 1]],
-    limit: 1000,
   });
   return (result.documents || [])
     .filter((doc) => doc.name && doc._id && doc.credentials?.application_secret)
@@ -359,23 +355,23 @@ const ALL_RI_SP_SERVICE_TYPES = RI_SP_SERVICE_TYPE_OPTIONS.map((opt) => opt.valu
 // region-scoped by AWS, so picking several runs that section once per region
 // and combines the results.
 const AWS_REGION_OPTIONS = [
-  { value: "us-east-1", label: "US East (N. Virginia)" },
-  { value: "us-east-2", label: "US East (Ohio)" },
-  { value: "us-west-1", label: "US West (N. California)" },
-  { value: "us-west-2", label: "US West (Oregon)" },
-  { value: "ca-central-1", label: "Canada (Central)" },
-  { value: "eu-west-1", label: "EU (Ireland)" },
-  { value: "eu-west-2", label: "EU (London)" },
-  { value: "eu-west-3", label: "EU (Paris)" },
-  { value: "eu-central-1", label: "EU (Frankfurt)" },
-  { value: "eu-north-1", label: "EU (Stockholm)" },
-  { value: "ap-south-1", label: "Asia Pacific (Mumbai)" },
-  { value: "ap-southeast-1", label: "Asia Pacific (Singapore)" },
-  { value: "ap-southeast-2", label: "Asia Pacific (Sydney)" },
-  { value: "ap-northeast-1", label: "Asia Pacific (Tokyo)" },
-  { value: "ap-northeast-2", label: "Asia Pacific (Seoul)" },
-  { value: "ap-northeast-3", label: "Asia Pacific (Osaka)" },
-  { value: "sa-east-1", label: "South America (São Paulo)" },
+  { value: "us-east-1", label: "US East-1 (N. Virginia)" },
+  { value: "us-east-2", label: "US East-2 (Ohio)" },
+  { value: "us-west-1", label: "US West-1 (N. California)" },
+  { value: "us-west-2", label: "US West-2 (Oregon)" },
+  { value: "ca-central-1", label: "Canada Central-1 (Central)" },
+  { value: "eu-west-1", label: "EU West-1 (Ireland)" },
+  { value: "eu-west-2", label: "EU West-2 (London)" },
+  { value: "eu-west-3", label: "EU West-3 (Paris)" },
+  { value: "eu-central-1", label: "EU Central-1 (Frankfurt)" },
+  { value: "eu-north-1", label: "EU North-1 (Stockholm)" },
+  { value: "ap-south-1", label: "Asia South-1 (Mumbai)" },
+  { value: "ap-southeast-1", label: "Asia Southeast-1 (Singapore)" },
+  { value: "ap-southeast-2", label: "Asia Southeast-2 (Sydney)" },
+  { value: "ap-northeast-1", label: "Asia Northeast-1 (Tokyo)" },
+  { value: "ap-northeast-2", label: "Asia Northeast-2 (Seoul)" },
+  { value: "ap-northeast-3", label: "Asia Northeast-3 (Osaka)" },
+  { value: "sa-east-1", label: "South East-1 (São Paulo)" },
 ].map((opt) => ({ ...opt, label: `${opt.label} (${opt.value})` })); // e.g. "Asia Pacific (Mumbai) (ap-south-1)"
 
 // Loads the per-region API base URLs configured in Backend/.env, once (they

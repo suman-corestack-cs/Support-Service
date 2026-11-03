@@ -20,7 +20,6 @@ MONGO_REGION_ENV_VARS = {
     "in": "MONGO_IN_URI",
     "mea": "MONGO_MEA_URI",
     "us3": "MONGO_US3_URI",
-    "useast": "MONGO_USEAST_URI",
 }
 
 _clients = {}
